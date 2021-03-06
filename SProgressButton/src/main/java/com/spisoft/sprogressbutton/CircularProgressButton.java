@@ -200,8 +200,10 @@ public class CircularProgressButton extends androidx.appcompat.widget.AppCompatB
             mIcon = attr.getResourceId(R.styleable.CircularProgressButton_cpb_icon, 0);
             mIconComplete = attr.getResourceId(R.styleable.CircularProgressButton_cpb_iconComplete, 0);
             mIconError = attr.getResourceId(R.styleable.CircularProgressButton_cpb_iconError, 0);
-            mCornerRadius = attr.getDimension(R.styleable.CircularProgressButton_cpb_cornerRadius, 0);
             mPaddingProgress = attr.getDimensionPixelSize(R.styleable.CircularProgressButton_cpb_paddingProgress, 0);
+
+            float cornerRadius = attr.getDimension(R.styleable.CircularProgressButton_cpb_cornerRadius, 0);
+            if(cornerRadius > 0) mCornerRadius = cornerRadius;
 
             int blue = getColor(R.color.cpb_blue);
             int white = getColor(R.color.cpb_white);
@@ -721,5 +723,10 @@ public class CircularProgressButton extends androidx.appcompat.widget.AppCompatB
                 return new SavedState[size];
             }
         };
+    }
+
+    public CircularProgressButton setRadius(float radius){
+        mCornerRadius = radius;
+        return this;
     }
 }
